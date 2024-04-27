@@ -26,7 +26,7 @@ const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, inval
 // To return true when an array contains digits of a valid credit card number and false when it is invalid. Use the Luhn algorithm.
 const validateCard = arr => {
     const len = arr.length;
-    //console.log(arr.length);
+    //console.log(arr.length);..
     let resultNum = [];
     let count=1; //odd-even index pointer
 
