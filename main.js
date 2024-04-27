@@ -31,7 +31,7 @@ const validateCard = arr => {
     let count=1; //odd-even index pointer
 
     for (let i=len-2; i>=0; i--) {
-        console.log(`Location: ${i}, Value: ${arr[i]}`);
+        //console.log(`Location: ${i}, Value: ${arr[i]}`);
         if (count == 1) {
             if (arr[i] * 2 > 9) {
                 resultNum.push(arr[i] * 2 - 9);
@@ -52,15 +52,27 @@ const validateCard = arr => {
     resultNum.forEach(num => {
         sum += num;
     });
-    console.log(sum);
+    //console.log(sum);
     //console.log((10 - (sum % 10)) % 10);
     //console.log(sum % 10);
-    console.log( sum % 10 === 0 ? "true":"false");
+    //console.log( sum % 10 === 0 ? "true":"false");
     return sum % 10 ? true:false;
 }
 
-validateCard(valid4);
 
+//To find invalid card numbers
+const findInvalidCards = arr => {
+    let invalidCards = [];
+    arr.forEach(card => {
+        if (!validateCard(card)) {
+            invalidCards.push(card);
+        };
+    } );
+    console.log(invalidCards);
+    return invalidCards;
+}
+
+findInvalidCards([mystery1,mystery2,mystery3,mystery4,mystery5]);
 
 
 
