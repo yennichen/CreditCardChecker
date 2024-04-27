@@ -23,8 +23,43 @@ const mystery5 = [4, 9, 1, 3, 5, 4, 0, 4, 6, 3, 0, 7, 2, 5, 2, 3]
 const batch = [valid1, valid2, valid3, valid4, valid5, invalid1, invalid2, invalid3, invalid4, invalid5, mystery1, mystery2, mystery3, mystery4, mystery5]
 
 
-// Add your functions below:
+// To return true when an array contains digits of a valid credit card number and false when it is invalid. Use the Luhn algorithm.
+const validateCard = arr => {
+    const len = arr.length;
+    //console.log(arr.length);
+    let resultNum = [];
+    let count=1; //odd-even index pointer
 
+    for (let i=len-2; i>=0; i--) {
+        console.log(`Location: ${i}, Value: ${arr[i]}`);
+        if (count == 1) {
+            if (arr[i] * 2 > 9) {
+                resultNum.push(arr[i] * 2 - 9);
+            } else {
+                resultNum.push(arr[i] * 2);
+            }
+            count = 0;
+        } else {
+            resultNum.push(arr[i]);
+            count = 1;
+        }
+        //console.log(resultNum);
+          
+    }
+
+    //Sum up
+    let sum = arr[len-1]; //checked number
+    resultNum.forEach(num => {
+        sum += num;
+    });
+    console.log(sum);
+    //console.log((10 - (sum % 10)) % 10);
+    //console.log(sum % 10);
+    console.log( sum % 10 === 0 ? "true":"false");
+    return sum % 10 ? true:false;
+}
+
+validateCard(valid4);
 
 
 
