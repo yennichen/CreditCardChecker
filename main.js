@@ -59,6 +59,33 @@ const validateCard = arr => {
     return sum % 10 ? true:false;
 }
 
+//To identify credit card companies
+const idInvalidCardCompanies = arr => {
+    const companies = [
+        {digit:3, company:'Amex (American Express)'},
+        {digit:4, company:'Visa'},
+        {digit:5, company:'Mastercard'},
+        {digit:6, company:'Discover'},
+    ];
+    
+    const invalidCompanies = [];
+
+    arr.forEach(card => {
+        const firstDigit = card[0];
+        console.log(`firstDigit: ${card[0]}`);
+        const foundCompany = companies.find(com => com.digit === firstDigit);
+        //const foundCompany = companies.find(company => company.digits === firstDigit);
+        console.log(`foundCompany: ${foundCompany}`);
+
+        if (foundCompany) {
+            invalidCompanies.push(foundCompany.company);
+        }
+    })
+
+    //Remove repeated companies
+    console.log(Array.from(new Set(invalidCompanies)));
+    return Array.from(new Set(invalidCompanies));
+}
 
 //To find invalid card numbers
 const findInvalidCards = arr => {
@@ -69,10 +96,11 @@ const findInvalidCards = arr => {
         };
     } );
     console.log(invalidCards);
+    //idInvalidCardCompanies(invalidCards);
     return invalidCards;
 }
 
-findInvalidCards([mystery1,mystery2,mystery3,mystery4,mystery5]);
+idInvalidCardCompanies([mystery1,mystery2,mystery3,mystery4,mystery5]);
 
 
 
